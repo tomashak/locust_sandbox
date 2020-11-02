@@ -3,6 +3,7 @@ Python framework for performance testing
 
 ## Installation
 ```pip3 install locust```
+```pip3 install locust```
 
 ## Run tests
 Call if you wanna use locust.conf
@@ -23,7 +24,7 @@ Get Exif information from image files
 ```exiftool.exe .\example.jpg -json -textout .json```
 Output is in file: example.json
 
-## Example webapi
+## Example web app
 We use Prestashop in docker
 Detail information: https://github.com/PrestaShop/docker
 
