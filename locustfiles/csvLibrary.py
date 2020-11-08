@@ -1,57 +1,45 @@
-import csv
+from csv import reader
+import os
 
 
-class csvLibrary(object):
-    '''Documentation for csvLibrary.
+class CsvLibrary:
 
-        It is used for reading from CSV (comma-separated values) files
-        which is used for storing tabular data (numbers and text) in plain text
-    '''
+    def __init__(self, mysql_csv, variables_csv):
+        self.path_to_mysql_csv = mysql_csv
+        self.path_to_variables_csv = variables_csv
 
-    def read_csv_file(self, filename, selector):
-        '''This creates a keyword named "Read CSV File"
+    def _check_if_path_exist(self, path):
+        if os.path.exists(path):
+            self.path_exists = True
+        else:
+            self.path_exists = False
 
-        This keyword takes one argument, which is a path to a .csv file. It
-        returns a list of rows, with each row being a list of the data in
-        each column.
-        '''
+    def read_mysql_csv(self):
         data = []
-        with open(filename, 'rt') as csvfile:
-            reader = csv.reader(csvfile, delimiter=';', quotechar='"')
-            for row in reader:
-                if selector in str(row):
+        self._check_if_path_exist(self.path_to_mysql_csv)
+        if self.path_exists:
+            with open(self.path_to_mysql_csv, 'r') as csv_file:
+                csv_reader = reader(csv_file)
+                for row in csv_reader:
                     data.append(row)
-        return data
+                return data[1]
+        else:
+            print('Cesta neexistuje')
 
-    def read_csv_file_two_select(self, filename, selector1, selector2):
-        '''This creates a keyword named "Read CSV File"
-
-        This keyword takes one argument, which is a path to a .csv file. It
-        returns a list of rows, with each row being a list of the data in
-        each column.
-        '''
+    def read_test_variable(self, number_row: int):
         data = []
-        with open(filename, 'rt') as csvfile:
-            reader = csv.reader(csvfile, delimiter=';', quotechar='"')
-            for row in reader:
-                if selector1 in str(row) and selector2 in str(row):
+        self._check_if_path_exist(self.path_to_variables_csv)
+        if self.path_exists:
+            with open(self.path_to_variables_csv, 'r') as csv_file:
+                csv_reader = reader(csv_file)
+                for row in csv_reader:
                     data.append(row)
-        return data
+                return data[number_row]
+        else:
+            print('Cesta neexistuje')
 
-
-    def read_csv_file_all_rows(self, filename):
-        '''This creates a keyword named "Read CSV File All Rows"
-
-        This keyword takes one argument, which is a path to a .csv file. It
-        returns a list of rows, with each row being a list of the data in
-        each column.
-        '''
-        data = []
-        i = 0
-        with open(filename, 'rt') as csvfile:
-            reader = csv.reader(csvfile)
-            for row in reader:
-                if i != 0:
-                    data.append(row)
-                i = i + 1
-        return data;
+'''
+csv = CsvLibrary('../csv_example/mysql.csv', '../csv_example/test_variables.csv')
+csv.read_mysql_csv()
+print(csv.read_test_variable(1))
+'''
