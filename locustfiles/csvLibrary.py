@@ -38,8 +38,4 @@ class CsvLibrary:
         else:
             print('Cesta neexistuje')
 
-'''
-csv = CsvLibrary('../csv_example/mysql.csv', '../csv_example/test_variables.csv')
-csv.read_mysql_csv()
-print(csv.read_test_variable(1))
-'''
+
