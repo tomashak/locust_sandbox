@@ -17,10 +17,13 @@ Locust_sandbox
 │    └── exiftool.exe           # Exe tool
 └── locustfiles                 # Folder with test
 │    └── csvLibrary             # Script for reading csv
+│    └── logger                 # Sciprts for print log and save data to csv
 │    └── webpage.py             # File with test
+└── shop                        # Folder with shops data
+│    └── docker-compose.yml     # Docker-compose
 └── locust.conf                 # File for starts locust
 └── README.MD                   # Here you are :-)
-└── docker-compose.yml          # For more easy starts
+
 ```
 
 ## Install
@@ -28,9 +31,9 @@ Locust_sandbox
     ```pip3 install locust``` 
 
 - If you want to use docker-compose:
-    - Go to locust_sandbox folder with cd ```<path_to_repository>```
+    - Go to locust_sandbox folder with cd ```cd <path_to_repository>/shop```
     - Start docker with ```docker-compose up -d```
-    - Go to localhost in your browser and install presta shop
+    - After sucessfull install go to root project folder ```cd <path_to_repository>```
     - Start locust ```locust```
 
 - If you want use docker command:
