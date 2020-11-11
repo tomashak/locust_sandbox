@@ -1,2 +1,2 @@
 user, password, host, port, database', ssl_disabled
-root,admin,127.0.0.1,3307,prestashop,True
+root,admin,127.0.0.1,3306,prestashop,True

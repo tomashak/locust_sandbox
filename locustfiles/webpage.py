@@ -44,7 +44,7 @@ class QuickstartUser(HttpUser):
         assert response.elapsed < datetime.timedelta(seconds=3), "Request took more than 3 seconds"
         tree = html.fromstring(response.text)
         # print(tree.xpath(self.HEADER_SEARCH_RESULT_PAGE_XPATH))
-        assert tree.xpath(self.HEADER_SEARCH_RESULT_PAGE_XPATH)[0] == "Výsledek hledání", \
+        assert tree.xpath(self.HEADER_SEARCH_RESULT_PAGE_XPATH)[0] == "Search results", \
             "Check header in search result"
         # print(tree.xpath(self.FIRST_ITEM_LINK_IN_SEARCH_RESULT_XPATH)[0])
         # TODO dynamic get URL for first product in search result,  xpath:
@@ -88,14 +88,14 @@ class QuickstartUser(HttpUser):
             "action": "update"
         }
         # print("Payload: " + payload)
-        self.client.post("/kosik", data=payload)
+        self.client.post("/cart", data=payload)
 
     @task
     def check_cart_sql(self):
         sql = '''select * from ps_cart order by id_cart desc'''
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
-        # print(result[0])
+        print(result[0])
         # print("ID cart:" + str(result[0][0]))
         sql = """
             select ps_product_lang.name,ps_product_lang.description_short,ps_cart_product.*,ps_product.price 
@@ -104,7 +104,7 @@ class QuickstartUser(HttpUser):
             join ps_product_lang ON ps_cart_product.id_product=ps_product_lang.id_product
             where ps_cart_product.id_cart=""" + str(result[0][0])
         # print(sql)
-        cursor2 = self.conn.cursor()
+        cursor2 = self.conn.cursor(buffered=True)
         cursor2.execute(sql)
         result = cursor2.fetchone()
         # print(result)

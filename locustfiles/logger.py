@@ -17,7 +17,3 @@ class Logger:
             with open(self.path_to_csv, 'a', newline='') as file:
                 wr = csv.writer(file, quoting=csv.QUOTE_ALL)
                 wr.writerow(a)
-
-
-logger = Logger()
-logger.log_value('ahoj')
