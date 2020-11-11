@@ -7,6 +7,7 @@ import os
 import time
 from locust import HttpUser, task, between
 from locustfiles.csvLibrary import CsvLibrary
+from locustfiles.logger import Logger
 
 
 class QuickstartUser(HttpUser):
