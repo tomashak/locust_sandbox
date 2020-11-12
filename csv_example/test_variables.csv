@@ -1,0 +1,2 @@
+index_page get, HEADER_SEARCH_RESULT_PAGE_XPATH, FIRST_ITEM_LINK_IN_SEARCH_RESULT_XPATH, LINK_TO_PRODUC, product_name, id_product, id_customization, url_image
+/,//section[@id="main"]/h2[@id="js-product-list-header"]/text(),//div[@id="js-product-list"]/div/article[1]//h2/a/@href,/men/1-1-hummingbird-printed-t-shirt.html#/1-velikost-s/8-barva-bila,Hummingbird printed t-shirt,1,0,http://localhost:8001/en/2-large_default/hummingbird-printed-t-shirt.jpg

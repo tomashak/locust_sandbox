@@ -1,41 +1,57 @@
-# locust_sandbox
-Python framework for performance testing
+# Locust sandbox
 
-## Installation
-```pip3 install locust```
-```pip3 install locust```
 
-## Run tests
-Call if you wanna use locust.conf
+## [Locust.io](https://locust.io/) | [Tesena](https://www.tesena.com/)
 
-```locust```
 
-Call without GUI
-```locust -f <path_to_file> --no-web -c 50 -r 10```
-Hosts: https://jsonplaceholder.typicode.com
+## Basic Info
+Python framework for performance testing in [Locust.io](https://locust.io/).
 
-### Locust’s web interface
-Once you’ve started Locust using one of the above command lines, you should open up a browser and point it to http://127.0.0.1:8089. 
+## Folder structure
+```
+Locust_sandbox
+└── csv_example                 # Folder with csv file for test
+│    └── mysql.csv              # Data for connect to mysql
+│    └── test_variables.csv     # Data for tests
+└── exif_example                # Folder with exe
+│    └── exiftool.exe           # Exe tool
+└── locustfiles                 # Folder with test
+│    └── csvLibrary             # Script for reading csv
+│    └── logger                 # Sciprts for print log and save data to csv
+│    └── webpage.py             # File with test
+└── shop                        # Folder with shops data
+│    └── docker-compose.yml     # Docker-compose
+└── locust.conf                 # File for starts locust
+└── README.MD                   # Here you are :-)
 
+```
+
+## Install
+- Make sure you have [Docker](https://www.docker.com/) and locust:
+    ```pip3 install locust``` 
+
+- If you want to use docker-compose:
+    - Go to locust_sandbox folder with cd ```cd <path_to_repository>/shop```
+    - Start docker with ```docker-compose up -d```
+    - After sucessfull install go to root project folder ```cd <path_to_repository>```
+    - Start locust ```locust```
+
+- If you want use docker command:
+    - Go to locust_sandbox folder with cd ```<path_to_repository>```
+    - Start docker with
+        ```
+        # create a network for containers to communicate
+        $ docker network create prestashop-net
+        # launch mysql 5.7 container
+        $ docker run -ti --name some-mysql --network prestashop-net -e MYSQL_ROOT_PASSWORD=admin -p 3307:3306 -d mysql:5.7
+        # launch prestashop container
+        $ docker run -ti --name some-prestashop --network prestashop-net -e DB_SERVER=some-mysql -p 8080:80 -d prestashop/prestashop
+        ```
+    - Go to localhost in your browser and install presta shop
+    - Change name admin directory and delete install folder with FTP or docker CLI 
+    - Start locust ```locust```
 
 ## Example win app (EXE)
 https://exiftool.org/
 Get Exif information from image files
 ```exiftool.exe .\example.jpg -json -textout .json```
-Output is in file: example.json
-
-## Example web app
-We use Prestashop in docker
-Detail information: https://github.com/PrestaShop/docker
-
-```
-# create a network for containers to communicate
-$ docker network create prestashop-net
-# launch mysql 5.7 container
-$ docker run -ti --name some-mysql --network prestashop-net -e MYSQL_ROOT_PASSWORD=admin -p 3307:3306 -d mysql:5.7
-# launch prestashop container
-$ docker run -ti --name some-prestashop --network prestashop-net -e DB_SERVER=some-mysql -p 8080:80 -d prestashop/prestashop
-```
-
-http://localhost:8085/admin  / nutne odstranit slozku install a prejmenovat slozku admin
-tomas.hak@gmail.com  / Abcd1234
